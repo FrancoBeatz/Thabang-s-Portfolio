@@ -1,28 +1,36 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { PROJECTS } from '../constants';
-import { ExternalLink, Github } from 'lucide-react';
+import { ExternalLink, Github, Sparkles } from 'lucide-react';
 
 const Projects: React.FC = () => {
   return (
-    <section id="projects" className="py-20 bg-slate-900">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="projects" className="py-24 bg-ai-base relative overflow-hidden">
+      {/* Background elements */}
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-gemini-blue/5 blur-[100px]"></div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-16"
+          className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6"
         >
-          <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
-            Featured <span className="text-purple-500">Projects</span>
-          </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
-            Explore some of my recent work turning ideas into digital reality.
-          </p>
+          <div>
+            <h2 className="text-3xl md:text-5xl font-display font-bold text-white mb-4">
+              Featured <span className="text-gradient">Projects</span>
+            </h2>
+            <p className="text-gray-400 text-lg max-w-xl">
+              A collection of innovative applications built with cutting-edge technology.
+            </p>
+          </div>
+          <div className="hidden md:block">
+            <div className="h-px w-32 bg-gradient-to-r from-transparent to-gemini-pink"></div>
+          </div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-12">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 lg:gap-10">
           {PROJECTS.map((project, index) => (
             <motion.div
               key={project.id}
@@ -30,53 +38,57 @@ const Projects: React.FC = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: index * 0.1 }}
-              className="group relative bg-slate-800 rounded-2xl overflow-hidden border border-slate-700 hover:border-purple-500/50 transition-all hover:shadow-2xl hover:shadow-purple-500/10"
+              className="group relative bg-ai-surface rounded-3xl overflow-hidden border border-white/5 hover:border-gemini-purple/30 transition-all hover:shadow-[0_0_30px_rgba(168,85,247,0.15)] flex flex-col h-full"
             >
               {/* Image Container */}
-              <div className="relative h-64 w-full overflow-hidden">
-                <div className="absolute inset-0 bg-slate-900/20 group-hover:bg-slate-900/0 transition-colors z-10"></div>
+              <div className="relative h-64 w-full overflow-hidden flex-shrink-0">
+                <div className="absolute inset-0 bg-gradient-to-t from-ai-surface to-transparent z-10 opacity-80"></div>
                 <img 
                   src={project.image} 
                   alt={project.title} 
-                  className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700"
+                  className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
               </div>
 
               {/* Content */}
-              <div className="p-6">
+              <div className="p-8 flex-1 flex flex-col relative z-20 -mt-10">
+                <div className="flex justify-between items-start mb-4">
+                   <h3 className="text-2xl font-bold text-white group-hover:text-gemini-blue transition-colors">
+                    {project.title}
+                  </h3>
+                  <div className="bg-gemini-purple/10 p-2 rounded-full opacity-0 group-hover:opacity-100 transition-opacity transform translate-y-2 group-hover:translate-y-0">
+                    <Sparkles size={16} className="text-gemini-purple" />
+                  </div>
+                </div>
+
+                {/* Tags */}
                 <div className="flex flex-wrap gap-2 mb-4">
                   {project.tags.map(tag => (
-                    <span key={tag} className="px-3 py-1 text-xs font-medium bg-purple-500/10 text-purple-300 rounded-full">
+                    <span key={tag} className="px-3 py-1 text-xs font-semibold bg-white/5 border border-white/10 text-gray-300 rounded-full hover:bg-white/10 hover:text-white transition-colors">
                       {tag}
                     </span>
                   ))}
                 </div>
                 
-                <h3 className="text-2xl font-bold text-white mb-2 group-hover:text-purple-400 transition-colors">
-                  {project.title}
-                </h3>
-                
-                <p className="text-gray-400 mb-6 line-clamp-2">
+                <p className="text-gray-400 mb-8 leading-relaxed">
                   {project.description}
                 </p>
 
-                <div className="flex gap-4">
+                <div className="mt-auto flex gap-4">
                   <a 
                     href={project.link} 
                     target="_blank" 
                     rel="noopener noreferrer"
-                    className="flex-1 inline-flex items-center justify-center px-4 py-2 bg-white text-slate-900 rounded-lg font-semibold hover:bg-gray-200 transition-colors"
+                    className="flex-1 inline-flex items-center justify-center px-4 py-3 bg-white text-black rounded-xl font-bold hover:bg-gray-100 transition-colors"
                   >
                     <ExternalLink size={18} className="mr-2" />
                     Live Demo
                   </a>
-                  {/* Placeholder for github link if exists in future */}
                   <button 
                     disabled
-                    className="flex-1 inline-flex items-center justify-center px-4 py-2 border border-slate-600 text-slate-400 rounded-lg font-semibold opacity-50 cursor-not-allowed"
+                    className="inline-flex items-center justify-center px-4 py-3 border border-white/10 text-gray-500 rounded-xl font-semibold opacity-50 cursor-not-allowed hover:bg-white/5"
                   >
-                    <Github size={18} className="mr-2" />
-                    Private Repo
+                    <Github size={20} />
                   </button>
                 </div>
               </div>

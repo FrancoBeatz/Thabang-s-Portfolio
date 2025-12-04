@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Thabang Frans Mojapelo | Portfolio</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
     <script>
       tailwind.config = {
         theme: {
@@ -15,9 +15,32 @@
               display: ['Space Grotesk', 'sans-serif'],
             },
             colors: {
-              primary: '#6366f1', // Indigo 500
-              secondary: '#ec4899', // Pink 500
-              dark: '#0f172a', // Slate 900
+              // AI Studio Inspired Theme
+              'ai-base': '#0B0F19', // Deep dark blue/black
+              'ai-surface': '#131826', // Slightly lighter surface
+              'ai-surface-light': '#1E2538', // Even lighter for hovers
+              'gemini-blue': '#4285F4',
+              'gemini-purple': '#A855F7',
+              'gemini-pink': '#EC4899',
+            },
+            backgroundImage: {
+              'gemini-gradient': 'linear-gradient(to right, #4285F4, #A855F7, #EC4899)',
+              'gemini-mesh': 'radial-gradient(at 0% 0%, hsla(253,16%,7%,1) 0, transparent 50%), radial-gradient(at 50% 0%, hsla(225,39%,30%,1) 0, transparent 50%), radial-gradient(at 100% 0%, hsla(339,49%,30%,1) 0, transparent 50%)',
+            },
+            animation: {
+              'pulse-slow': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+              'float': 'float 6s ease-in-out infinite',
+              'glow': 'glow 2s ease-in-out infinite alternate',
+            },
+            keyframes: {
+              float: {
+                '0%, 100%': { transform: 'translateY(0)' },
+                '50%': { transform: 'translateY(-20px)' },
+              },
+              glow: {
+                '0%': { boxShadow: '0 0 5px #4285F4, 0 0 10px #4285F4' },
+                '100%': { boxShadow: '0 0 20px #A855F7, 0 0 30px #EC4899' },
+              }
             }
           }
         }
@@ -25,23 +48,38 @@
     </script>
     <style>
       body {
-        background-color: #020617;
+        background-color: #0B0F19;
         color: #f8fafc;
         scroll-behavior: smooth;
+        overflow-x: hidden;
       }
       /* Custom scrollbar for webkit */
       ::-webkit-scrollbar {
         width: 8px;
       }
       ::-webkit-scrollbar-track {
-        background: #0f172a;
+        background: #0B0F19;
       }
       ::-webkit-scrollbar-thumb {
-        background: #334155;
+        background: #1E2538;
         border-radius: 4px;
+        border: 2px solid #0B0F19;
       }
       ::-webkit-scrollbar-thumb:hover {
-        background: #475569;
+        background: #4285F4;
+      }
+      
+      .glass-panel {
+        background: rgba(19, 24, 38, 0.6);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+      }
+      
+      .text-gradient {
+        background: linear-gradient(to right, #4285F4, #A855F7, #EC4899);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
       }
     </style>
   <script type="importmap">

@@ -9,7 +9,7 @@ import Footer from './components/Footer';
 
 const App: React.FC = () => {
   return (
-    <div className="bg-slate-950 min-h-screen text-slate-200 selection:bg-cyan-500/30 selection:text-cyan-200">
+    <div className="bg-ai-base min-h-screen text-slate-200 selection:bg-gemini-blue/30 selection:text-white">
       <Navbar />
       <main>
         <Hero />
